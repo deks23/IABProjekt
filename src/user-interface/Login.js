@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from "react";
 import styled from "styled-components";
 import { loginAction } from "../user-actions/user-actions";
+import { logoutAction } from "../user-actions/user-actions";
+
 import { connect } from "react-redux";
 /**
  * Login
@@ -44,6 +46,11 @@ export class Login extends Component {
     this.props.dispatch(loginAction(user));
   };
 
+  onLogout = e => {
+    e.perventDefault();
+    this.props.dispach(logoutAction());
+  };
+
   render() {
     return (
       <FormContainer>
@@ -63,6 +70,11 @@ export class Login extends Component {
           <FormGroup className="form-group">
             <FormButton type="submit" onClick={this.onSubmit}>
               Submit
+            </FormButton>
+          </FormGroup>
+          <FormGroup>
+            <FormButton type="submit" onClick={this.onLogout}>
+              log out
             </FormButton>
           </FormGroup>
         </Form>

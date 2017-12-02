@@ -3,7 +3,6 @@ import { LOGIN_SUCCESS_ACTION, LOGOUT_ACTION } from "./user-actions";
 const initialState = {
   user: {
     email: "",
-    userId: "",
     token: ""
   }
 };
@@ -15,15 +14,14 @@ const Reducer = (currentState = initialState, action) => {
         ...currentState,
         user: {
           email: action.data.email,
-          userId: action.data.userId,
           token: action.data.token
         }
       };
     case LOGOUT_ACTION:
+      console.log("logg");
       return {
         user: {
           email: "",
-          userId: "",
           token: ""
         }
       };

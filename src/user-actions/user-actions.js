@@ -12,15 +12,14 @@ export const loginAction = user => {
     })
       .then(response => {
         console.log(response);
-
         dispatch({
           type: LOGIN_SUCCESS_ACTION,
           data: {
             email: user.email,
-            userId: response.data.userId,
-            token: response.data.token
+            token: response.data
           }
         });
+        //hashHistory.push("/");
       })
       .catch(error => {
         console.log(error);

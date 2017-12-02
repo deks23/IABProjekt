@@ -10,6 +10,6 @@ const rootReducer = combineReducers({
 
 const enhancer = compose(applyMiddleware(thunk), persistState());
 
-const store = createStore(loginReducer, {}, enhancer);
+const store = createStore(rootReducer, {}, enhancer);
 
 export default store;

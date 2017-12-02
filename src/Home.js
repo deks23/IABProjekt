@@ -9,7 +9,7 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      qwe: ""
+      email: ""
     };
   }
   fetchData = () => {
@@ -28,14 +28,16 @@ export class Home extends Component {
   };
 
   render() {
-    console.log(this.props);
     return <NavBar />;
   }
 }
 const mapStateToProps = currentState => {
-  console.log(currentState.user.email);
+  console.log(currentState);
   return {
-    email: currentState.user.email
+    user: {
+      email: currentState.login.user.email,
+      token: currentState.login.user.token
+    }
   };
 };
 export default connect(mapStateToProps)(Home);

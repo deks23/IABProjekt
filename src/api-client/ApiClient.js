@@ -1,7 +1,7 @@
 import axios from "axios";
 
 var ApiClient = axios.create({
-  baseURL: "http://localhost/ABprojekt/test.php/",
+  baseURL: "http://localhost/ABprojekt/api.php/",
   headers: {
     "Content-Type": "application/json"
   }
