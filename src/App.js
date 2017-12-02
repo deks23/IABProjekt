@@ -8,7 +8,7 @@ import UserPanel from "./user-interface/UserPanel";
 import Login from "./user-interface/Login";
 class App extends Component {
   render() {
-    localStorage.clear();
+    //localStorage.clear();
     return (
       <Router>
         <div>

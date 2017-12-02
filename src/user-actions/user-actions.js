@@ -11,7 +11,6 @@ export const loginAction = user => {
       password: user.password
     })
       .then(response => {
-        console.log(response);
         dispatch({
           type: LOGIN_SUCCESS_ACTION,
           data: {

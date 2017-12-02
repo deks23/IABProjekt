@@ -12,27 +12,12 @@ export class Home extends Component {
       email: ""
     };
   }
-  fetchData = () => {
-    var url = this.prepareUrl();
-    ApiClient.get(url)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log("error");
-      });
-  };
-  prepareUrl = () => {
-    var url = "select";
-    return url;
-  };
 
   render() {
     return <NavBar />;
   }
 }
 const mapStateToProps = currentState => {
-  console.log(currentState);
   return {
     user: {
       email: currentState.login.user.email,

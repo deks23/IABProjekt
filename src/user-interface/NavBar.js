@@ -8,7 +8,6 @@ import { connect } from "react-redux";
  */
 export class NavBar extends Component {
   renderUserSessionLink = () => {
-    console.log("as");
     if (!this.isUserLogged()) {
       return <Link to="/login">Login</Link>;
     }
@@ -20,7 +19,6 @@ export class NavBar extends Component {
   };
 
   isUserLogged = () => {
-    console.log(this.props);
     return this.props.user.email !== "";
   };
 
