@@ -10,6 +10,10 @@ export class UserPane extends Component {
     })
       .then(response => {
         console.log(response);
+        if (response.data.token === "") {
+          console.log("token experied");
+          //OPEN LOGIN PAGE
+        }
       })
       .catch(error => {
         console.log(error);
