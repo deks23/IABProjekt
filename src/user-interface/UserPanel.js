@@ -3,13 +3,21 @@ import { connect } from "react-redux";
 import ApiClient from "../api-client/ApiClient";
 
 export class UserPane extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userData: ""
+    };
+  }
+
   fetchUserData = () => {
-    console.log(this.props.user.token);
+ 
     ApiClient.post(USER, {
       token: this.props.user.token
     })
       .then(response => {
-        console.log(response);
+        this.setState({ userData: response.data });
+        console.log(this.state.userData[0].Imie)
         if (response.data.token === "") {
           console.log("token experied");
           //OPEN LOGIN PAGE
@@ -19,14 +27,24 @@ export class UserPane extends Component {
         console.log(error);
       });
   };
-  render() {
+
+  renderUserData = () => {
+    console.log(this.state);
+    if(this.state.userData!=="")
+    return <div>{this.state.userData[0].Imie}</div>;
+    else return <div />
+  };
+  componentDidMount() {
     this.fetchUserData();
-    return <div>Userpanel</div>;
+  }
+  render() {
+    
+    return this.renderUserData();
   }
 }
 
 const mapStateToProps = currentState => {
-  console.log(currentState);
+
   return {
     user: {
       email: currentState.login.user.email,

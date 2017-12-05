@@ -21,7 +21,7 @@ export class NavBar extends Component {
   isUserLogged = () => {
     return this.props.user.email !== "";
   };
-
+ 
   render() {
     return (
       <NavBarContainer>
