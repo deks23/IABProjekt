@@ -3,10 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { logoutAction } from "../user-actions/user-actions";
 import { connect } from "react-redux";
-/**
- * NavBar
- */
-export class NavBar extends Component {
+
+export class Header extends Component {
   renderUserSessionLink = () => {
     if (!this.isUserLogged()) {
       return <Link to="/login">Login</Link>;
@@ -25,7 +23,8 @@ export class NavBar extends Component {
   render() {
     return (
       <NavBarContainer>
-        <ul>
+      <nav>
+        <List className="navbar navbar-inverse">
           <li>
             <Link to="/"> index</Link>
           </li>
@@ -37,16 +36,37 @@ export class NavBar extends Component {
           </li>
 
           <li>{this.renderUserSessionLink()}</li>
-        </ul>
+        </List>
+        </nav>
       </NavBarContainer>
     );
   }
 }
 const NavBarContainer = styled.div`
-  background-color: #adc775;
+
+  background-color: #468fea;
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 `;
 
+
+const List = styled.ul`
+display: flex;
+  flex-wrap: wrap;
+ 
+
+  
+`;
+
+const StyledNav = styled.nav`
+  background-color: #000000;
+  border-radius: 0px;
+  border-color: #9e9d24;
+  box-shadow: 2px 2px 4px grey;
+  font-size: 120%;
+`;
 const mapStateToProps = currentState => {
   return {
     user: {
@@ -56,4 +76,8 @@ const mapStateToProps = currentState => {
   };
 };
 
-export default connect(mapStateToProps)(NavBar);
+
+
+
+
+export default connect(mapStateToProps)(Header);

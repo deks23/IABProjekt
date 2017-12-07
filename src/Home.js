@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import ApiClient from "./api-client/ApiClient.js";
-import NavBar from "./user-interface/NavBar";
+import Header from "./user-interface/Header";
 import { connect } from "react-redux";
 /**
  * Home
@@ -9,12 +9,16 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: ""
+      email: "",
+      loading: false
     };
   }
 
   render() {
-    return <NavBar />;
+    return (
+      <Header />
+      
+    );
   }
 }
 const mapStateToProps = currentState => {

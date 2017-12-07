@@ -72,11 +72,7 @@ export class Login extends Component {
               Submit
             </FormButton>
           </FormGroup>
-          <FormGroup>
-            <FormButton type="submit" onClick={this.onLogout}>
-              log out
-            </FormButton>
-          </FormGroup>
+          
         </Form>
       </FormContainer>
     );
