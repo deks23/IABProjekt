@@ -5,6 +5,7 @@ import { logoutAction } from "../user-actions/user-actions";
 import { loginEmployeeAction } from "../user-actions/user-actions";
 import { ButtonToolbar, Button } from "react-bootstrap";
 import { connect } from "react-redux";
+import {withRouter} from "react-router-dom";
 
 /**
  * Login
@@ -73,14 +74,16 @@ export class Login extends Component {
   onPatientSubmit = e => {
     e.preventDefault();
     const user = this.createUserObject();
-    this.props.dispatch(loginAction(user));
+    this.props.dispatch(loginAction(user, this.props.history));
+   
+    
   };
 
   onEmployeeSubmit = e => {
-    console.log(this.state);
     e.preventDefault();
-    const doctor = this.createEmployeeObject();
-    this.props.dispatch(loginEmployeeAction(doctor));
+    const employee = this.createEmployeeObject();
+    this.props.dispatch(loginEmployeeAction(employee, this.props.history));
+   
   };
 
   render() {
@@ -141,8 +144,8 @@ const FormContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-content: space-between;
+  justify-content: space-around;
+  
 `;
 
 const Form = styled.form`
@@ -191,4 +194,4 @@ const FormButton = styled.button`
     box-shadow: 0px 0px 0px;
   }
 `;
-export default connect()(Login);
+export default connect()(withRouter(Login));

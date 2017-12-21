@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, history } from "react-router-dom";
 import Home from "./Home";
 import Page from "./Page";
 import styled from "styled-components";

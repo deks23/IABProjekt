@@ -1,11 +1,11 @@
 import ApiClient from "../api-client/ApiClient";
-import { hashHistory } from "react-router";
 
+import { withRouter } from 'react-router-dom';
 export const LOGIN_SUCCESS_ACTION = "loginSuccess";
 export const LOGOUT_ACTION = "logout";
 export const EMPLOYEE_LOGIN_SUCCES_ACTION = "employeeLoginSuccess";
 
-export const loginAction = user => {
+export const loginAction = (user, history) => {
   return dispatch => {
     ApiClient.post(LOGIN_URL, {
       email: user.email,
@@ -19,7 +19,7 @@ export const loginAction = user => {
             token: response.data
           }
         });
-        //hashHistory.push("/");
+        history.push("/user");
       })
       .catch(error => {
         console.log(error);
@@ -28,7 +28,7 @@ export const loginAction = user => {
 };
 
 
-export const loginEmployeeAction = employee => {
+export const loginEmployeeAction = (employee, history) => {
   return dispatch => {
     ApiClient.post(EMPLOYEE_LOGIN_URL, {
       email: employee.email,
@@ -42,7 +42,7 @@ export const loginEmployeeAction = employee => {
             token: response.data
           }
         });
-        //hashHistory.push("/");
+        history.push("/employeePanel");
       })
       .catch(error => {
         console.log(error);
