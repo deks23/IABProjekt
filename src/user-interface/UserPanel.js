@@ -8,7 +8,7 @@ export class UserPane extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userData: "", 
+      userData: "",
       loading: false
     };
   }
@@ -32,26 +32,37 @@ export class UserPane extends Component {
       });
   };
 
-
-
   renderUserData = () => {
     if (this.state.userData !== "") {
       return (
-        <DonationList>
-          {this.state.userData.map(p => (
-            <Donation
-              don={p}
-              key={p.idDonacji}
-              date={p.Data}
-              comment={p.Uwagi}
-            />
-          ))}
-        </DonationList>
+        <Container>
+        <div>
+        Uzytkownik:
+          <UserInfo>
+            <ul className="list-group">
+              <li>{this.state.userData[0].Imie}</li>
+              <li>{this.state.userData[0].Nazwisko}</li>
+              <li>{this.state.userData[0].DataUrodzenia}</li>
+            </ul>
+          </UserInfo>
+          </div>
+          <DonationList>
+            Donacje:
+            {this.state.userData.map(p => (
+              <Donation
+                don={p}
+                key={p.idDonacji}
+                date={p.Data}
+                comment={p.Uwagi}
+              />
+            ))}
+          </DonationList>
+        </Container>
       );
     } else return <div />;
   };
 
-  renderLoader(){
+  renderLoader() {
     return <Loader />;
   }
   changeLoaderVisibility = () => {
@@ -65,7 +76,7 @@ export class UserPane extends Component {
   render() {
     return (
       <div>
-      {this.state.loading ? this.renderLoader() : this.renderUserData()}
+        {this.state.loading ? this.renderLoader() : this.renderUserData()}
       </div>
     );
   }
@@ -85,6 +96,20 @@ const DonationList = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+`;
+
+const Container = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const UserInfo = styled.div`
+  background-color: #448de9;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 5px;
 `;
 const USER = "user";
 export default connect(mapStateToProps)(UserPane);

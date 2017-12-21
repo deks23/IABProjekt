@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from "react";
 import styled from "styled-components";
 import { loginAction } from "../user-actions/user-actions";
 import { logoutAction } from "../user-actions/user-actions";
-
+import { ButtonToolbar, Button } from "react-bootstrap";
 import { connect } from "react-redux";
+
 /**
  * Login
  */
@@ -12,20 +13,40 @@ export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: ""
+      patientEmail: "",
+      patientPassword: "",
+      doctorEmail:"",
+      doctorPassword:""
     };
   }
 
-  refreshState = e => {
+  patientDataRefreshState = e => {
     e.preventDefault();
     switch (e.target.id) {
-      case "emailInput":
+      case "patientEmailInput":
         this.setState({
           email: e.target.value
         });
         break;
-      case "passwordInput":
+      case "patientPasswordInput":
+        this.setState({
+          password: e.target.value
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
+  doctorDataRefreshState = e => {
+    e.preventDefault();
+    switch (e.target.id) {
+      case "doctorEmailInput":
+        this.setState({
+          email: e.target.value
+        });
+        break;
+      case "doctorPasswordInput":
         this.setState({
           password: e.target.value
         });
@@ -55,6 +76,28 @@ export class Login extends Component {
     return (
       <FormContainer>
         <Form>
+          Zaloguj się jako dawca
+          <FormGroup>
+            <FormLabel>Email</FormLabel>
+            <FormInput id="patientEmailInput" onChange={this.patientDataRefreshState} />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel>Password</FormLabel>
+            <FormInput
+              id="patientPasswordInput"
+              type="password"
+              onChange={this.patientDataRefreshState}
+            />
+          </FormGroup>
+          <FormGroup className="form-group">
+            <FormButton type="submit" onClick={this.onSubmit} className>
+              Submit
+            </FormButton>
+          </FormGroup>
+        </Form>
+
+        <Form>
+          Zaloguj się jako lekarz
           <FormGroup>
             <FormLabel>Email</FormLabel>
             <FormInput id="emailInput" onChange={this.refreshState} />
@@ -68,11 +111,10 @@ export class Login extends Component {
             />
           </FormGroup>
           <FormGroup className="form-group">
-            <FormButton type="submit" onClick={this.onSubmit}>
+            <FormButton type="submit" onClick={this.onSubmit} className>
               Submit
             </FormButton>
           </FormGroup>
-          
         </Form>
       </FormContainer>
     );
@@ -83,6 +125,7 @@ const FormContainer = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  align-content: space-between;
 `;
 
 const Form = styled.form`

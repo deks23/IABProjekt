@@ -6,6 +6,7 @@ import Page from "./Page";
 import styled from "styled-components";
 import UserPanel from "./user-interface/UserPanel";
 import Login from "./user-interface/Login";
+import Register from "./user-interface/Register";
 class App extends Component {
   render() {
     //localStorage.clear();
@@ -16,6 +17,7 @@ class App extends Component {
           <Route path="/page" component={Page} />
           <Route path="/user" component={UserPanel} />
           <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </div>
       </Router>
     );

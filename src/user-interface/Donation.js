@@ -5,11 +5,15 @@ export default class Donation extends Component {
         super(props);
     }
     render() {
-        console.log(this.props);
+        
         return <Element>{this.props.date} {this.props.comment} </Element>
     }
 }
 
 const Element = styled.div`
-       flexDirection: column;
+       
+       background-color: #448de9;
+       margin: 10px;
+       padding: 20px;
+       border-radius: 5px;
 `

@@ -15,57 +15,63 @@ export class Header extends Component {
       </Link>
     );
   };
-
+  renderRegisterLink = () => {
+    if (!this.isUserLogged()) {
+      return <Link to="register">Zarejstruj się</Link>;
+    }
+  };
   isUserLogged = () => {
     return this.props.user.email !== "";
   };
- 
+
   render() {
     return (
-      <NavBarContainer>
-      <nav>
-        <List className="navbar navbar-inverse">
-          <li>
-            <Link to="/"> index</Link>
-          </li>
-          <li>
-            <Link to="/page">page</Link>
-          </li>
-          <li>
-            <Link to="/user"> Panel Użytkownika </Link>
-          </li>
+      <NavBarContainer className="container">
+        <NavBar className="navbar navbar-inverse">
+          <ResponsiveList className="nav navbar-nav">
+            <li>
+              <Link to="/"> index</Link>
+            </li>
+            <li>
+              <Link to="/page">page</Link>
+            </li>
+            <li>
+              <Link to="/user"> Panel Użytkownika </Link>
+            </li>
 
-          <li>{this.renderUserSessionLink()}</li>
-        </List>
-        </nav>
+            <li>{this.renderUserSessionLink()}</li>
+            <li> {this.renderRegisterLink()}</li>
+          </ResponsiveList>
+        </NavBar>
       </NavBarContainer>
     );
   }
 }
 const NavBarContainer = styled.div`
+  background-color: white;
+`;
 
-  background-color: #468fea;
+const ResponsiveList = styled.ul`
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+
   justify-content: space-around;
   align-items: center;
+  height: 50px;
+  @media only screen and (max-width: 767px) {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
 `;
 
-
-const List = styled.ul`
-display: flex;
-  flex-wrap: wrap;
- 
-
-  
-`;
-
-const StyledNav = styled.nav`
-  background-color: #000000;
+const NavBar = styled.nav`
+  background-color: red;
   border-radius: 0px;
   border-color: #9e9d24;
   box-shadow: 2px 2px 4px grey;
   font-size: 120%;
+  width: 100%;
+  height: 50px;
 `;
 const mapStateToProps = currentState => {
   return {
@@ -75,9 +81,5 @@ const mapStateToProps = currentState => {
     }
   };
 };
-
-
-
-
 
 export default connect(mapStateToProps)(Header);
