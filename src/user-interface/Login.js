@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from "react";
 import styled from "styled-components";
 import { loginAction } from "../user-actions/user-actions";
 import { logoutAction } from "../user-actions/user-actions";
+import { loginEmployeeAction } from "../user-actions/user-actions";
 import { ButtonToolbar, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 
@@ -15,8 +16,8 @@ export class Login extends Component {
     this.state = {
       patientEmail: "",
       patientPassword: "",
-      doctorEmail:"",
-      doctorPassword:""
+      employeeEmail: "",
+      employeePassword: ""
     };
   }
 
@@ -25,12 +26,12 @@ export class Login extends Component {
     switch (e.target.id) {
       case "patientEmailInput":
         this.setState({
-          email: e.target.value
+          patientEmail: e.target.value
         });
         break;
       case "patientPasswordInput":
         this.setState({
-          password: e.target.value
+          patientPassword: e.target.value
         });
         break;
       default:
@@ -41,35 +42,45 @@ export class Login extends Component {
   doctorDataRefreshState = e => {
     e.preventDefault();
     switch (e.target.id) {
-      case "doctorEmailInput":
+      case "employeeEmailInput":
         this.setState({
-          email: e.target.value
+          employeeEmail: e.target.value
         });
         break;
-      case "doctorPasswordInput":
+      case "employeePasswordInput":
         this.setState({
-          password: e.target.value
+          employeePassword: e.target.value
         });
         break;
       default:
         break;
     }
   };
+
   createUserObject = () => {
     return {
-      email: this.state.email,
-      password: this.state.password
+      email: this.state.patientEmail,
+      password: this.state.patientPassword
     };
   };
-  onSubmit = e => {
+
+  createEmployeeObject = () => {
+    return {
+      email: this.state.employeeEmail,
+      password: this.state.employeePassword
+    };
+  };
+  onPatientSubmit = e => {
     e.preventDefault();
     const user = this.createUserObject();
     this.props.dispatch(loginAction(user));
   };
 
-  onLogout = e => {
-    e.perventDefault();
-    this.props.dispach(logoutAction());
+  onEmployeeSubmit = e => {
+    console.log(this.state);
+    e.preventDefault();
+    const doctor = this.createEmployeeObject();
+    this.props.dispatch(loginEmployeeAction(doctor));
   };
 
   render() {
@@ -79,7 +90,10 @@ export class Login extends Component {
           Zaloguj się jako dawca
           <FormGroup>
             <FormLabel>Email</FormLabel>
-            <FormInput id="patientEmailInput" onChange={this.patientDataRefreshState} />
+            <FormInput
+              id="patientEmailInput"
+              onChange={this.patientDataRefreshState}
+            />
           </FormGroup>
           <FormGroup>
             <FormLabel>Password</FormLabel>
@@ -90,7 +104,7 @@ export class Login extends Component {
             />
           </FormGroup>
           <FormGroup className="form-group">
-            <FormButton type="submit" onClick={this.onSubmit} className>
+            <FormButton type="submit" onClick={this.onPatientSubmit} className>
               Submit
             </FormButton>
           </FormGroup>
@@ -100,18 +114,21 @@ export class Login extends Component {
           Zaloguj się jako lekarz
           <FormGroup>
             <FormLabel>Email</FormLabel>
-            <FormInput id="emailInput" onChange={this.refreshState} />
+            <FormInput
+              id="employeeEmailInput"
+              onChange={this.doctorDataRefreshState}
+            />
           </FormGroup>
           <FormGroup>
             <FormLabel>Password</FormLabel>
             <FormInput
-              id="passwordInput"
+              id="employeePasswordInput"
               type="password"
-              onChange={this.refreshState}
+              onChange={this.doctorDataRefreshState}
             />
           </FormGroup>
           <FormGroup className="form-group">
-            <FormButton type="submit" onClick={this.onSubmit} className>
+            <FormButton type="submit" onClick={this.onEmployeeSubmit} className>
               Submit
             </FormButton>
           </FormGroup>

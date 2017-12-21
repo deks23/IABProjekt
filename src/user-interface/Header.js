@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 export class Header extends Component {
   renderUserSessionLink = () => {
-    if (!this.isUserLogged()) {
+    if (!(this.isUserLogged() || this.isEmployeeLogged())) {
       return <Link to="/login">Login</Link>;
     }
     return (
@@ -15,16 +15,33 @@ export class Header extends Component {
       </Link>
     );
   };
+
   renderRegisterLink = () => {
-    if (!this.isUserLogged()) {
+    if (!(this.isUserLogged() || this.isEmployeeLogged())) {
       return <Link to="register">Zarejstruj się</Link>;
+    }
+  };
+
+  renderEmployeePanelLink = () =>{
+    if(this.isEmployeeLogged())
+    return <Link to="employeePanel"> Panel Pracownika </Link>
+  }
+
+  renderUserPanelLink = () => {
+    if (this.isUserLogged()) {
+      return <Link to="user"> Panel użytkownika</Link>;
     }
   };
   isUserLogged = () => {
     return this.props.user.email !== "";
   };
 
+  isEmployeeLogged = () => {
+    return this.props.employee.email !== "";
+  };
+
   render() {
+    console.log(this.props);
     return (
       <NavBarContainer className="container">
         <NavBar className="navbar navbar-inverse">
@@ -35,10 +52,8 @@ export class Header extends Component {
             <li>
               <Link to="/page">page</Link>
             </li>
-            <li>
-              <Link to="/user"> Panel Użytkownika </Link>
-            </li>
-
+            <li>{this.renderUserPanelLink()}</li>
+            <li>{this.renderEmployeePanelLink()} </li>
             <li>{this.renderUserSessionLink()}</li>
             <li> {this.renderRegisterLink()}</li>
           </ResponsiveList>
@@ -78,6 +93,10 @@ const mapStateToProps = currentState => {
     user: {
       email: currentState.login.user.email,
       token: currentState.login.user.token
+    },
+    employee: {
+      email: currentState.login.employee.email,
+      token: currentState.login.employee.token
     }
   };
 };

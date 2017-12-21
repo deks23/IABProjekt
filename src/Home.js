@@ -22,11 +22,13 @@ export class Home extends Component {
   }
 }
 const mapStateToProps = currentState => {
+  console.log(currentState);
   return {
     user: {
       email: currentState.login.user.email,
-      token: currentState.login.user.token
+      token: currentState.login.user.token,
     }
+ 
   };
 };
 export default connect(mapStateToProps)(Home);
