@@ -9,34 +9,22 @@ class Register extends React.Component {
       email: "",
       password: "",
       name: "",
-      samePassword: false,
+      samePassword: true,
       surname: "",
-      birthDate: ""
+      confirmPassword: "",
+      birthDate: "",
+      registerError: false
     };
   }
 
   isPasswordCorrect = value => {
-    console.log("qwe");
-    if (value === this.state.password) {
-      console.log("valid");
-      this.setState({
-        samePassword: true
-      });
-    }
-    else{
-      console.log(this.state.password);
-      this.setState({
-        samePassword: false
-      });
-    }
+    return this.state.confirmPassword === this.state.password;
   };
 
-
   registerUser = () => {
-      ApiClient
-      .post(REGISTER_URL, this.createUserObject())
+    ApiClient.post(REGISTER_URL, this.createUserObject())
       .then(response => {
-        console.log("registred")
+        console.log(response);
       })
       .then(error => {
         console.log(error);
@@ -57,7 +45,9 @@ class Register extends React.Component {
         });
         break;
       case "confirmPasswordInput":
-       
+        this.setState({
+          confirmPassword: e.target.value
+        });
         break;
       case "nameInput":
         this.setState({
@@ -89,9 +79,14 @@ class Register extends React.Component {
     };
   };
 
+  showError = () => {
+    this.setState({ samePassword: false });
+  };
+
   onSubmit = e => {
     e.preventDefault();
-    this.registerUser();
+    if (this.isPasswordCorrect()) this.registerUser();
+    else this.showError();
   };
 
   render() {
@@ -118,6 +113,9 @@ class Register extends React.Component {
               type="password"
               onChange={this.refreshState}
             />
+            <FormErrorMessage>
+            {this.state.samePassword ? "" : "Hasła nie są identyczne"}
+            </FormErrorMessage>
           </FormGroup>
           <FormGroup>
             <FormLabel>Imię</FormLabel>
@@ -199,5 +197,11 @@ const FormButton = styled.button`
     box-shadow: 0px 0px 0px;
   }
 `;
-const REGISTER_URL = "register"
+
+const FormErrorMessage = styled.div`
+  flex: 1;
+  padding: 5px;
+`;
+
+const REGISTER_URL = "register";
 export default Register;
