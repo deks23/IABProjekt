@@ -7,7 +7,8 @@ import styled from "styled-components";
 import UserPanel from "./user-interface/UserPanel";
 import Login from "./user-interface/Login";
 import Register from "./user-interface/Register";
-import EmployeePanel from "./user-interface/EmployeePanel"
+import EmployeePanel from "./employee-interface/EmployeePanel";
+import AddPatient from "./employee-interface/AddPatient";
 class App extends Component {
   render() {
     localStorage.clear();
@@ -21,6 +22,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/employeePanel" component = {EmployeePanel} />
+          <Route path="/addPatient" component = {AddPatient} />
         </div>
       </Router>
     );

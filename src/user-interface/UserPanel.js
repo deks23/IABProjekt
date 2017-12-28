@@ -64,13 +64,14 @@ export class UserPane extends Component {
                 <li>{this.state.userData[0].DataUrodzenia}</li>
               </ul>
             </UserInfo>
-            <DonationList>
+            
+          </div>
+          <DonationList>
               Donacje:
               {this.isUserDonationsEmpty()
                 ? this.renderLackOfDonations()
                 : this.renderUserDonations()}
             </DonationList>
-          </div>
         </Container>
       );
     } else return <div />;

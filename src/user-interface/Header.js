@@ -32,6 +32,11 @@ export class Header extends Component {
       return <Link to="user"> Panel użytkownika</Link>;
     }
   };
+
+  renderAddUserLink = () =>{
+    if (this.isEmployeeLogged())
+    return <Link to ="addPatient"> Dodaj pacjenta </Link>
+  }
   isUserLogged = () => {
     return this.props.user.email !== "";
   };
@@ -54,8 +59,10 @@ export class Header extends Component {
             </li>
             <li>{this.renderUserPanelLink()}</li>
             <li>{this.renderEmployeePanelLink()} </li>
+            <li>{this.renderAddUserLink()}</li>
             <li>{this.renderUserSessionLink()}</li>
             <li> {this.renderRegisterLink()}</li>
+            
           </ResponsiveList>
         </NavBar>
       </NavBarContainer>
