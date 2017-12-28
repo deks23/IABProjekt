@@ -9,6 +9,7 @@ export class UserPane extends Component {
     super(props);
     this.state = {
       userData: "",
+      userDonations: "",
       loading: false
     };
   }
@@ -32,47 +33,77 @@ export class UserPane extends Component {
       });
   };
 
+  fetchUserDonations = () => {
+    ApiClient.post(DONATIONS, {
+      token: this.props.user.token
+    })
+      .then(response => {
+        this.setState({ userDonations: response.data });
+
+        if (response.data.token === "") {
+          console.log("token experied");
+          //OPEN LOGIN PAGE
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   renderUserData = () => {
     console.log(this.state);
     if (this.state.userData !== "") {
       return (
         <Container>
-        <div>
-        Uzytkownik:
-          <UserInfo>
-            <ul className="list-group">
-              <li>{this.state.userData[0].Imie}</li>
-              <li>{this.state.userData[0].Nazwisko}</li>
-              <li>{this.state.userData[0].DataUrodzenia}</li>
-            </ul>
-          </UserInfo>
+          <div>
+            Uzytkownik:
+            <UserInfo>
+              <ul className="list-group">
+                <li>{this.state.userData[0].Imie}</li>
+                <li>{this.state.userData[0].Nazwisko}</li>
+                <li>{this.state.userData[0].DataUrodzenia}</li>
+              </ul>
+            </UserInfo>
+            <DonationList>
+              Donacje:
+              {this.isUserDonationsEmpty()
+                ? this.renderLackOfDonations()
+                : this.renderUserDonations()}
+            </DonationList>
           </div>
-          <DonationList>
-            Donacje:
-            {this.state.userData.map(p => (
-              <Donation
-                don={p}
-                key={p.idDonacji}
-                date={p.Data}
-                comment={p.Uwagi}
-              />
-            ))}
-          </DonationList>
         </Container>
       );
     } else return <div />;
   };
 
+  isUserDonationsEmpty = () => {
+    if (this.state.userDonations.length === 0) return true;
+    else return false;
+  };
+
+  renderUserDonations = () => {
+    return this.state.userDonations.map(p => (
+      <Donation don={p} key={p.idDonacji} date={p.Data} comment={p.Uwagi} />
+    ));
+  };
+  
+  renderLackOfDonations = () => {
+    return <Donation comment="Brak donacji" />;
+  };
+
   renderLoader() {
     return <Loader />;
   }
+
   changeLoaderVisibility = () => {
     this.setState({
       loading: !this.state.loading
     });
   };
+
   componentDidMount() {
     this.fetchUserData();
+    this.fetchUserDonations();
   }
   render() {
     return (
@@ -112,5 +143,6 @@ const UserInfo = styled.div`
   padding: 20px;
   border-radius: 5px;
 `;
-const USER = "user";
+const USER = "userData";
+const DONATIONS = "userDonations";
 export default connect(mapStateToProps)(UserPane);
