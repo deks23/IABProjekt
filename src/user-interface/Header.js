@@ -38,11 +38,11 @@ export class Header extends Component {
     return <Link to ="addPatient"> Dodaj pacjenta </Link>
   }
   isUserLogged = () => {
-    return this.props.user.email !== "";
+    return (this.props.user.token !== "" && this.props.user.token !== "failed");
   };
 
   isEmployeeLogged = () => {
-    return this.props.employee.email !== "";
+    return (this.props.employee.token !== "" && this.props.employee.token !== "failed");
   };
 
   render() {

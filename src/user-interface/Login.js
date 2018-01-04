@@ -5,7 +5,7 @@ import { logoutAction } from "../user-actions/user-actions";
 import { loginEmployeeAction } from "../user-actions/user-actions";
 import { ButtonToolbar, Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 /**
  * Login
@@ -75,15 +75,12 @@ export class Login extends Component {
     e.preventDefault();
     const user = this.createUserObject();
     this.props.dispatch(loginAction(user, this.props.history));
-   
-    
   };
 
   onEmployeeSubmit = e => {
     e.preventDefault();
     const employee = this.createEmployeeObject();
     this.props.dispatch(loginEmployeeAction(employee, this.props.history));
-   
   };
 
   render() {
@@ -145,7 +142,6 @@ const FormContainer = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-around;
-  
 `;
 
 const Form = styled.form`
@@ -194,4 +190,18 @@ const FormButton = styled.button`
     box-shadow: 0px 0px 0px;
   }
 `;
-export default connect()(withRouter(Login));
+
+const mapStateToProps = currentState => {
+  return {
+    user: {
+      email: currentState.login.user.email,
+      token: currentState.login.user.token
+    },
+    employee: {
+      email: currentState.login.employee.email,
+      token: currentState.login.employee.token
+    }
+  };
+};
+
+export default connect(mapStateToProps)(withRouter(Login));

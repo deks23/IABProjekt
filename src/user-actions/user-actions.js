@@ -19,7 +19,9 @@ export const loginAction = (user, history) => {
             token: response.data
           }
         });
+        if( response.data!=="failed")
         history.push("/user");
+        else history.push("/loginFailed");
       })
       .catch(error => {
         console.log(error);
@@ -42,7 +44,9 @@ export const loginEmployeeAction = (employee, history) => {
             token: response.data
           }
         });
+        if(response.data!=="failed")
         history.push("/employeePanel");
+        else history.push("/loginFailed");
       })
       .catch(error => {
         console.log(error);

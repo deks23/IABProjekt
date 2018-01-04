@@ -9,6 +9,7 @@ import Login from "./user-interface/Login";
 import Register from "./user-interface/Register";
 import EmployeePanel from "./employee-interface/EmployeePanel";
 import AddPatient from "./employee-interface/AddPatient";
+import LoginFailed from "./LoginFailed";
 class App extends Component {
   render() {
     localStorage.clear();
@@ -23,6 +24,7 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/employeePanel" component = {EmployeePanel} />
           <Route path="/addPatient" component = {AddPatient} />
+          <Route path="/loginFailed" component ={LoginFailed} />
         </div>
       </Router>
     );
