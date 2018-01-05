@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import Header from "./user-interface/Header";
+import styled from "styled-components";
 
 export class Root extends Component {
   render() {
@@ -11,12 +12,16 @@ export class Root extends Component {
             <Header />
           </div>
         </div>
-        <div className="row">
-          <div className="col-xs-10">{this.props.children}</div>
-        </div>
+        <Container className="row">
+          <div >{this.props.children}</div>
+        </Container>
       </div>
     );
   }
 }
 
+const Container = styled.div`
+  display: flex;
+  justify-content:center
+`;
 export default Root;

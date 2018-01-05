@@ -18,9 +18,9 @@ class App extends Component {
     
     return (
       <Router>
-        <div>
+        <div >
           <Root>
-            <Route exact="/" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/page" component={Page} />
             <Route path="/user" component={UserPanel} />
             <Route path="/login" component={Login} />
@@ -29,6 +29,7 @@ class App extends Component {
             <Route path="/addPatient" component = {AddPatient} />
             <Route path="/loginFailed" component ={LoginFailed} />
             <Route path="/patientList" component = {PatientList} />
+          
           </Root>
           
         </div>
