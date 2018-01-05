@@ -37,6 +37,10 @@ export class Header extends Component {
     if (this.isEmployeeLogged())
     return <Link to ="addPatient"> Dodaj pacjenta </Link>
   }
+  renderPatientList = () =>{
+    if (this.isEmployeeLogged())
+    return <Link to ="patientList"> Pacjenci </Link>
+  }
   isUserLogged = () => {
     return (this.props.user.token !== "" && this.props.user.token !== "failed");
   };
@@ -60,8 +64,10 @@ export class Header extends Component {
             <li>{this.renderUserPanelLink()}</li>
             <li>{this.renderEmployeePanelLink()} </li>
             <li>{this.renderAddUserLink()}</li>
+            <li>{this.renderPatientList()} </li>
             <li>{this.renderUserSessionLink()}</li>
             <li> {this.renderRegisterLink()}</li>
+            
             
           </ResponsiveList>
         </NavBar>

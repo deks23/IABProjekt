@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from "react";
 import ApiClient from "./api-client/ApiClient.js";
 import Header from "./user-interface/Header";
 import { connect } from "react-redux";
+import styled from "styled-components";
 /**
  * Home
  */
@@ -16,7 +17,9 @@ export class Home extends Component {
 
   render() {
     return (
-      <Header />
+      <Container>
+      qwe
+      </Container>
       
     );
   }
@@ -31,4 +34,8 @@ const mapStateToProps = currentState => {
  
   };
 };
+
+const Container = styled.div`
+
+`;
 export default connect(mapStateToProps)(Home);
