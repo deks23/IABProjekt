@@ -77,6 +77,7 @@ export class Header extends Component {
 const NavBarContainer = styled.div`
   background-color: white;
   padding-top:10px;
+  
 `;
 
 const ResponsiveList = styled.ul`
@@ -93,10 +94,10 @@ const ResponsiveList = styled.ul`
 `;
 
 const NavBar = styled.nav`
-  background-color: #ff0000;
+  background-color: #782C28;
   border-radius: 0px;
   border-color: #9e9d24;
-  
+  box-shadow: 1px 1px 2px grey;
   font-size: 120%;
   font-color: black;
   height: 50px;

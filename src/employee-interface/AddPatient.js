@@ -113,12 +113,12 @@ export class AddPatient extends React.Component {
       <FormContainer>
         <Form>
           Dodaj Pacjenta
-          <FormGroup>
-            <FormLabel>Email</FormLabel>
+          <FormGroup className="form-group row">
+            <FormLabel className="col-form-label" >Email</FormLabel>
             <FormInput id="emailInput" onChange={this.refreshState}  className="form-control"/>
           </FormGroup>
-          <FormGroup>
-            <FormLabel>Hasło</FormLabel>
+          <FormGroup className="form-group row">
+            <FormLabel className="col-form-label">Hasło</FormLabel>
             <FormInput
               id="passwordInput"
               type="password"
@@ -126,7 +126,7 @@ export class AddPatient extends React.Component {
               className="form-control"
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="form-group row">
             <FormLabel>Potwierdź hasło</FormLabel>
             <FormInput
               id="confirmPasswordInput"
@@ -138,19 +138,19 @@ export class AddPatient extends React.Component {
               {this.state.samePassword ? "" : "Hasła nie są identyczne"}
             </FormErrorMessage>
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="form-group row">
             <FormLabel>Imię</FormLabel>
             <FormInput  className="form-control" id="nameInput" onChange={this.refreshState} />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="form-group row">
             <FormLabel>Nazwisko</FormLabel>
             <FormInput  className="form-control" id="surnameInput" onChange={this.refreshState} />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="form-group row">
             <FormLabel>Adres</FormLabel>
             <FormInput  className="form-control" id="adressInput" onChange={this.refreshState} />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="form-group row">
             <FormLabel>Data urodzenia</FormLabel>
             <FormInput
               id="dateInput"
@@ -158,7 +158,7 @@ export class AddPatient extends React.Component {
               onChange={this.refreshState}
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="form-group row">
             <FormLabel>Grupa Krwi</FormLabel>
             <select id="bloodGroupInput" onChange={this.refreshState}>
               <option value="AB Rh-"> AB Rh- </option>
@@ -171,9 +171,9 @@ export class AddPatient extends React.Component {
               <option value="0 Rh+"> AB Rh+ </option>
             </select>
           </FormGroup>
-          <FormGroup className="form-group">
-            <FormButton type="submit" onClick={this.onSubmit}>
-              Submit
+          <FormGroup className="form-group row">
+            <FormButton type="submit" onClick={this.onSubmit} className="btn btn-primary">
+              Dodaj
             </FormButton>
           </FormGroup>
         </Form>
@@ -186,6 +186,7 @@ const FormContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  
   justify-content: space-around;
 `;
 
@@ -193,8 +194,10 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+  background-color: #f6dddd;
   padding: 20px;
+  text-align: center;
+  box-shadow: 2px 2px 4px grey;
 `;
 
 const FormGroup = styled.div`
@@ -212,17 +215,18 @@ const FormInput = styled.input`
 
 const FormLabel = styled.label`
   flex: 1;
-  
+  background-color: #B2E3FF;
   box-shadow: 1px 1px 2px grey;
   text-align: center;
   font-size: 90%;
+  padding:5px;
 `;
 
 const FormButton = styled.button`
   flex: 1;
   
   border: none;
- 
+  background-color: #35BBFF;
   padding: 5px;
   font-size: 130%;
   font-weight: bold;
