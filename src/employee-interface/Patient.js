@@ -7,7 +7,7 @@ export class Patient extends Component {
     }
   render() {
     return (
-        <Element>{this.props.patient.Imie} {this.props.patient.Nazwisko} {this.props.patient.DataUrodzenia} {this.props.patient.NazwaGrupyKrwi} {this.props.patient.Adres} </Element>
+        <Element>{this.props.patient.Id} {this.props.patient.Imie} {this.props.patient.Nazwisko} {this.props.patient.DataUrodzenia} {this.props.patient.NazwaGrupyKrwi} {this.props.patient.Adres} </Element>
     );
   }
 }

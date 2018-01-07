@@ -12,9 +12,7 @@ export class PatientList extends Component {
     };
   }
 
-  renderPatientList = () => {
-    return <PatientListContainer>qq</PatientListContainer>;
-  };
+
 
   renderLoader = () => {
     return <Loader />;
@@ -43,7 +41,6 @@ export class PatientList extends Component {
   }
 
   render() {
-    console.log(this.state.list);
     return (
       <div>
         {this.state.loading ? this.renderLoader() : this.renderPatientList()}

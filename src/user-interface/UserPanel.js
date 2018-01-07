@@ -127,7 +127,7 @@ const mapStateToProps = currentState => {
 const DonationList = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `;
 
