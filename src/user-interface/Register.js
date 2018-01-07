@@ -148,6 +148,7 @@ const FormContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  
   justify-content: space-around;
 `;
 
@@ -155,9 +156,10 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 1px 1px 2px grey;
-  background-color: #cddc39;
+  background-color: #f6dddd;
   padding: 20px;
+  text-align: center;
+  box-shadow: 2px 2px 4px grey;
 `;
 
 const FormGroup = styled.div`
@@ -175,19 +177,18 @@ const FormInput = styled.input`
 
 const FormLabel = styled.label`
   flex: 1;
-  background-color: #827717;
-  padding: 5px;
+  background-color: #B2E3FF;
   box-shadow: 1px 1px 2px grey;
-  color: white;
   text-align: center;
   font-size: 90%;
+  padding:5px;
 `;
 
 const FormButton = styled.button`
   flex: 1;
-  background-color: #827717;
+  
   border: none;
-  color: white;
+  background-color: #35BBFF;
   padding: 5px;
   font-size: 130%;
   font-weight: bold;

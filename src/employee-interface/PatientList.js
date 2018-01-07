@@ -3,43 +3,89 @@ import Loader from "../user-interface/Loader";
 import ApiClient from "../api-client/ApiClient";
 import styled from "styled-components";
 import Patient from "./Patient";
+import { Donations } from "./Donations";
 export class PatientList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      list: ""
+      list: "",
+      showDonations: false,
+      showList: true,
+      id: 0,
+      bloodGroup: "",
+      name: "",
+      surname: "",
+      birthDate: "",
+      adres: ""
     };
   }
 
+  showDonations = (
+    id,
+    imie,
+    nazwisko,
+    dataUrodzenia,
+    NazwaGrupyKrwi,
+    Adres
+  ) => {
+    this.setState({
+      showDonations: true,
+      showList: false,
+      id: id,
+      bloodGroup: NazwaGrupyKrwi,
+      name: imie,
+      surname: nazwisko,
+      birthDate: dataUrodzenia,
+      adres: Adres
+    });
+  };
 
+  closeDonations = () => {
+    this.setState({ showDonations: false, showList: true });
+  };
 
   renderLoader = () => {
     return <Loader />;
   };
 
-
   renderPatientList = () => {
-    return (
-      <table className="table table-striped">
-      <thead>
-      <tr className="bg-danger">
-        <th>Id</th>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>Data urodzenia</th>
-        <th>Grupa krwi</th>
-        <th>Adres</th>
-      </tr>
-      </thead>
-      <tbody>
-      {this.state.list.map(p => (
-      <Patient patient = {p}/>
-    ))}
-    </tbody>
-  
-  </table>
-  );
+    if (this.state.showList) {
+      return (
+        <table className="table table-striped">
+          <thead>
+            <tr className="bg-danger">
+              <th>Id</th>
+              <th>Imię</th>
+              <th>Nazwisko</th>
+              <th>Data urodzenia</th>
+              <th>Grupa krwi</th>
+              <th>Adres</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.list.map(p => (
+              <Patient patient={p} showDonations={this.showDonations} />
+            ))}
+          </tbody>
+        </table>
+      );
+    } else {
+      return (
+        <Donations
+          closeDonations={this.closeDonations}
+          patientId={this.state.id}
+          name={this.state.name}
+          surname={this.state.surname}
+          bloodGroup={this.state.bloodGroup}
+          adres={this.state.adres}
+          birthDate={this.state.birthDate}
+        >
+          qwe
+        </Donations>
+      );
+    }
   };
 
   fetchPatientList = () => {
