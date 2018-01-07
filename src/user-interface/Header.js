@@ -22,10 +22,10 @@ export class Header extends Component {
     }
   };
 
-  renderEmployeePanelLink = () =>{
-    if(this.isEmployeeLogged())
-    return <Link to="employeePanel"> Panel Pracownika </Link>
-  }
+  renderEmployeePanelLink = () => {
+    if (this.isEmployeeLogged())
+      return <Link to="employeePanel"> Panel Pracownika </Link>;
+  };
 
   renderUserPanelLink = () => {
     if (this.isUserLogged()) {
@@ -33,42 +33,41 @@ export class Header extends Component {
     }
   };
 
-  renderAddUserLink = () =>{
+  renderAddUserLink = () => {
     if (this.isEmployeeLogged())
-    return <Link to ="addPatient"> Dodaj pacjenta </Link>
-  }
-  renderPatientList = () =>{
+      return <Link to="addPatient"> Dodaj pacjenta </Link>;
+  };
+  renderPatientList = () => {
     if (this.isEmployeeLogged())
-    return <Link to ="patientList"> Pacjenci </Link>
-  }
+      return <Link to="patientList"> Pacjenci </Link>;
+  };
   isUserLogged = () => {
-    return (this.props.user.token !== "" && this.props.user.token !== "failed");
+    return this.props.user.token !== "" && this.props.user.token !== "failed";
   };
 
   isEmployeeLogged = () => {
-    return (this.props.employee.token !== "" && this.props.employee.token !== "failed");
+    return (
+      this.props.employee.token !== "" && this.props.employee.token !== "failed"
+    );
   };
 
   render() {
-    console.log(this.props);
     return (
       <NavBarContainer className="container">
         <NavBar className="navbar navbar-inverse">
           <ResponsiveList className="nav navbar-nav">
-            <li>
-              <Link to="/"> index</Link>
-            </li>
-            <li>
+            <HeaderList>
+              <Link to="/"> Strona domowa</Link>
+            </HeaderList>
+            <HeaderList>
               <Link to="/page">page</Link>
-            </li>
-            <li>{this.renderUserPanelLink()}</li>
-            <li>{this.renderEmployeePanelLink()} </li>
-            <li>{this.renderAddUserLink()}</li>
-            <li>{this.renderPatientList()} </li>
-            <li>{this.renderUserSessionLink()}</li>
-            <li> {this.renderRegisterLink()}</li>
-            
-            
+            </HeaderList>
+            <HeaderList>{this.renderUserPanelLink()}</HeaderList>
+            <HeaderList>{this.renderEmployeePanelLink()} </HeaderList>
+            <HeaderList>{this.renderAddUserLink()}</HeaderList>
+            <HeaderList>{this.renderPatientList()} </HeaderList>
+            <HeaderList>{this.renderUserSessionLink()}</HeaderList>
+            <HeaderList> {this.renderRegisterLink()}</HeaderList>
           </ResponsiveList>
         </NavBar>
       </NavBarContainer>
@@ -77,6 +76,7 @@ export class Header extends Component {
 }
 const NavBarContainer = styled.div`
   background-color: white;
+  padding-top:10px;
 `;
 
 const ResponsiveList = styled.ul`
@@ -93,14 +93,19 @@ const ResponsiveList = styled.ul`
 `;
 
 const NavBar = styled.nav`
-  background-color: red;
+  background-color: #ff0000;
   border-radius: 0px;
   border-color: #9e9d24;
-  box-shadow: 2px 2px 4px grey;
+  
   font-size: 120%;
-  width: 100%;
+  font-color: black;
   height: 50px;
 `;
+
+const HeaderList = styled.li`
+  color: black;
+`;
+
 const mapStateToProps = currentState => {
   return {
     user: {

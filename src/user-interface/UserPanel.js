@@ -56,22 +56,32 @@ export class UserPane extends Component {
       return (
         <Container>
           <div>
-            Uzytkownik:
-            <UserInfo>
-              <ul className="list-group">
-                <li>{this.state.userData[0].Imie}</li>
-                <li>{this.state.userData[0].Nazwisko}</li>
-                <li>{this.state.userData[0].DataUrodzenia}</li>
-              </ul>
-            </UserInfo>
-            
+            Dawca:
+            <div>
+              <Table className="table">
+                <thead>
+                  <tr>
+                    <th>Imię  </th>
+                    <th>Nazwisko</th>
+                    <th>Data urodzenia</th>
+                    <th>Grupa krwi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <TableCell>{this.state.userData[0].Imie} </TableCell>
+                  <TableCell>{this.state.userData[0].Nazwisko} </TableCell>
+                  <TableCell>{this.state.userData[0].DataUrodzenia} </TableCell>
+                  <TableCell>{this.state.userData[0].NazwaGrupyKrwi} </TableCell>
+                </tbody>
+              </Table>
+            </div>
           </div>
           <DonationList>
-              Donacje:
-              {this.isUserDonationsEmpty()
-                ? this.renderLackOfDonations()
-                : this.renderUserDonations()}
-            </DonationList>
+            Donacje:
+            {this.isUserDonationsEmpty()
+              ? this.renderLackOfDonations()
+              : this.renderUserDonations()}
+          </DonationList>
         </Container>
       );
     } else return <div />;
@@ -83,11 +93,24 @@ export class UserPane extends Component {
   };
 
   renderUserDonations = () => {
-    return this.state.userDonations.map(p => (
+    return (
+    <table className="table">
+    <thead>
+      <tr>
+        <th>Data donacji</th>
+        <th>Informacje o donacji</th>
+      </tr>
+    </thead>
+      <tbody>
+    {this.state.userDonations.map(p => (
       <Donation don={p} key={p.idDonacji} date={p.Data} comment={p.Uwagi} />
-    ));
+    ))}
+    </tbody>
+
+    </table>
+  )
   };
-  
+
   renderLackOfDonations = () => {
     return <Donation comment="Brak donacji" />;
   };
@@ -144,6 +167,15 @@ const UserInfo = styled.div`
   padding: 20px;
   border-radius: 5px;
 `;
+
+const Table = styled.table`
+  margin: 20px;
+`;
+
+const TableCell = styled.td`
+  
+`;
+
 const USER = "userData";
 const DONATIONS = "userDonations";
 export default connect(mapStateToProps)(UserPane);

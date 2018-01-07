@@ -14,11 +14,11 @@ import PatientList from "./employee-interface/PatientList";
 import Root from "./Root";
 class App extends Component {
   render() {
-    localStorage.clear();
+   // localStorage.clear();
     
     return (
       <Router>
-        <div >
+        <RootDiv >
           <Root>
             <Route exact path="/" component={Home} />
             <Route path="/page" component={Page} />
@@ -32,10 +32,15 @@ class App extends Component {
           
           </Root>
           
-        </div>
+        </RootDiv>
       </Router>
     );
   }
 }
+const RootDiv = styled.div`
+ background-color: #B2E3FF;
+ width:100vw;
+
+`;
 const MainAppContainer = styled.div``;
 export default App;

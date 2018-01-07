@@ -20,9 +20,26 @@ export class PatientList extends Component {
 
 
   renderPatientList = () => {
-    return this.state.list.map(p => (
+    return (
+      <table className="table table-striped">
+      <thead>
+      <tr className="bg-danger">
+        <th>Id</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Data urodzenia</th>
+        <th>Grupa krwi</th>
+        <th>Adres</th>
+      </tr>
+      </thead>
+      <tbody>
+      {this.state.list.map(p => (
       <Patient patient = {p}/>
-    ));
+    ))}
+    </tbody>
+  
+  </table>
+  );
   };
 
   fetchPatientList = () => {

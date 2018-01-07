@@ -115,7 +115,7 @@ export class AddPatient extends React.Component {
           Dodaj Pacjenta
           <FormGroup>
             <FormLabel>Email</FormLabel>
-            <FormInput id="emailInput" onChange={this.refreshState} />
+            <FormInput id="emailInput" onChange={this.refreshState}  className="form-control"/>
           </FormGroup>
           <FormGroup>
             <FormLabel>Hasło</FormLabel>
@@ -123,6 +123,7 @@ export class AddPatient extends React.Component {
               id="passwordInput"
               type="password"
               onChange={this.refreshState}
+              className="form-control"
             />
           </FormGroup>
           <FormGroup>
@@ -131,6 +132,7 @@ export class AddPatient extends React.Component {
               id="confirmPasswordInput"
               type="password"
               onChange={this.refreshState}
+              className="form-control"
             />
             <FormErrorMessage>
               {this.state.samePassword ? "" : "Hasła nie są identyczne"}
@@ -138,15 +140,15 @@ export class AddPatient extends React.Component {
           </FormGroup>
           <FormGroup>
             <FormLabel>Imię</FormLabel>
-            <FormInput id="nameInput" onChange={this.refreshState} />
+            <FormInput  className="form-control" id="nameInput" onChange={this.refreshState} />
           </FormGroup>
           <FormGroup>
             <FormLabel>Nazwisko</FormLabel>
-            <FormInput id="surnameInput" onChange={this.refreshState} />
+            <FormInput  className="form-control" id="surnameInput" onChange={this.refreshState} />
           </FormGroup>
           <FormGroup>
             <FormLabel>Adres</FormLabel>
-            <FormInput id="adressInput" onChange={this.refreshState} />
+            <FormInput  className="form-control" id="adressInput" onChange={this.refreshState} />
           </FormGroup>
           <FormGroup>
             <FormLabel>Data urodzenia</FormLabel>
@@ -191,8 +193,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 1px 1px 2px grey;
-  background-color: #cddc39;
+  
   padding: 20px;
 `;
 
@@ -211,19 +212,17 @@ const FormInput = styled.input`
 
 const FormLabel = styled.label`
   flex: 1;
-  background-color: #827717;
-  padding: 5px;
+  
   box-shadow: 1px 1px 2px grey;
-  color: white;
   text-align: center;
   font-size: 90%;
 `;
 
 const FormButton = styled.button`
   flex: 1;
-  background-color: #827717;
+  
   border: none;
-  color: white;
+ 
   padding: 5px;
   font-size: 130%;
   font-weight: bold;

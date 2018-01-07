@@ -4,24 +4,38 @@ import styled from "styled-components";
 
 export class Root extends Component {
   render() {
-    let renderData = this.props.children;
+    
     return (
-      <div>
-        <div className="container">
-          <div className="col-xs-10">
-            <Header />
+      <RootDiv  className="container">
+        <div>
+          <div>
+          <Header />
           </div>
         </div>
-        <Container className="row">
-          <div >{this.props.children}</div>
+        <Container className="container">
+          <Div>
+            <div>{this.props.children}</div>
+          </Div>
         </Container>
-      </div>
+      </RootDiv>
     );
   }
 }
 
 const Container = styled.div`
   display: flex;
-  justify-content:center
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+`;
+
+const Div = styled.div`
+  width: 100vw;
+  height: 100vh;
+`;
+const RootDiv = styled.div`
+  display:flex;
+  flex-direction:column;
+ 
 `;
 export default Root;
