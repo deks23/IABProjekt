@@ -93,7 +93,7 @@ export class AddDonation extends React.Component {
             </FormButton>
             <FormButton
               type="submit"
-              onClick={this.onSubmit}
+              onClick={this.props.closeAddDonation}
               className="btn btn-primary"
             >
               Powrót do panelu pacjenta
