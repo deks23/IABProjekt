@@ -2,12 +2,16 @@ import React, { Component, PropTypes } from "react";
 import styled from "styled-components";
 import ApiClient from "../api-client/ApiClient";
 import Loader from "../user-interface/Loader";
+import UpdatePatientData from "./UpdatePatientData";
 export class Donations extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      donations: ""
+      donations: "",
+      editPanel: false,
+      addDonation: false, 
+      other: false,
     };
   }
 
@@ -61,7 +65,6 @@ export class Donations extends Component {
   renderPatientData = () => {
     return (
       <Div>
-      
         <ListContainer>
           <ul className="list-group">
             <li className="list-group-item">Imię</li>
@@ -89,42 +92,67 @@ export class Donations extends Component {
             </li>
           </ul>
         </ListContainer>
-       
-        <Button
-          onClick={this.props.closeDonations}
-          className="btn btn-primary"
-        >
+
+        <Button onClick={this.props.closeDonations} className="btn btn-primary">
           Powrót do listy pacjentów
         </Button>
 
-        <Button
-          
-          className="btn btn-primary"
-        >
+        <Button className="btn btn-primary" onClick={this.showEditPanel}>
           Zmień dane pacjenta
         </Button>
 
-        <Button
-          
-          className="btn btn-primary"
-        >
-          Dodaj donację
-        </Button>
+        <Button className="btn btn-primary">Dodaj donację</Button>
       </Div>
     );
   };
   createUserObject = () => {
     return { id: this.props.patientId };
   };
+
+  showEditPanel = () => {
+    this.setState({ editPanel: true });
+  };
+
+  showAddDonation = () => {
+    this.setState({ addDonation: true });
+  };
+
+  renderUser = () => {
+    return (
+      <UserDataContainer>
+        {this.renderPatientData()}
+        {this.state.loading ? this.renderLoader() : this.renderDonations()}
+      </UserDataContainer>
+    );
+  };
+  closeEditPanel = () =>{
+    this.setState({editPanel:false});
+  }
+
+  closeAddDonation = () =>{
+    this.setState({addDonation:false});
+  }
+
+  renderEditPanel = () => {
+    return (
+      <UpdatePatientData
+      closeEditPanel = {this.closeEditPanel}
+        name={this.props.name}
+        surname={this.props.surname}
+        birthDate={this.props.birthDate}
+        bloodGroup = {this.props.bloodGroup}
+        adres = {this.props.adres}
+        id = {this.props.patientId}
+      />
+    );
+  };
+
+ 
+
   render() {
     return (
       <div>
-        <UserDataContainer>
-          {this.renderPatientData()}
-          
-            {this.state.loading ? this.renderLoader() : this.renderDonations()}
-          
-        </UserDataContainer>
+        {this.state.editPanel ? this.renderEditPanel() : this.renderUser()}
       </div>
     );
   }
@@ -149,7 +177,7 @@ const Button = styled.button`
   border: none;
   background-color: #35bbff;
   padding: 5px;
-  margin:5px;
+  margin: 5px;
   font-size: 130%;
   font-weight: bold;
   box-shadow: 1px 1px 2px grey;

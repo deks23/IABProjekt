@@ -26,7 +26,7 @@ export class Patient extends Component {
         <td>{this.props.patient.NazwaGrupyKrwi}</td>
         <td>{this.props.patient.Adres}</td>
         <td>
-          <button onClick={this.donations}>Donacje</button>
+          <button onClick={this.donations}>Panel dawcy</button>
         </td>
       </tr>
     );

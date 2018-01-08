@@ -45,7 +45,7 @@ export const loginEmployeeAction = (employee, history) => {
           }
         });
         if(response.data!=="failed")
-        history.push("/employeePanel");
+        history.push("/addPatient");
         else history.push("/loginFailed");
       })
       .catch(error => {

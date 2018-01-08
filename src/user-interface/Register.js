@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ApiClient from "../api-client/ApiClient";
+import { withRouter } from "react-router-dom";
 
 class Register extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Register extends React.Component {
       surname: "",
       confirmPassword: "",
       birthDate: "",
+      adres: "",
       registerError: false
     };
   }
@@ -24,7 +26,7 @@ class Register extends React.Component {
   registerUser = () => {
     ApiClient.post(REGISTER_URL, this.createUserObject())
       .then(response => {
-        console.log(response);
+        this.props.history.push("/login");
       })
       .then(error => {
         console.log(error);
@@ -64,6 +66,11 @@ class Register extends React.Component {
           birthDate: e.target.value
         });
         break;
+        case "adresInput":
+        this.setState({
+          adres: e.target.value
+        });
+        break;
       default:
         break;
     }
@@ -75,21 +82,23 @@ class Register extends React.Component {
       password: this.state.password,
       imie: this.state.name,
       nazwisko: this.state.surname,
+      adres: this.state.adres,
       dataUrodzenia: this.state.birthDate
     };
   };
 
-  showError = () => {
+  showPasswordError = () => {
     this.setState({ samePassword: false });
   };
 
   onSubmit = e => {
     e.preventDefault();
     if (this.isPasswordCorrect()) this.registerUser();
-    else this.showError();
+    else this.showPasswordError();
   };
 
   render() {
+    console.log(this.props);
     return (
       <FormContainer>
         <Form>
@@ -125,6 +134,13 @@ class Register extends React.Component {
             <FormLabel>Nazwisko</FormLabel>
             <FormInput id="surnameInput" onChange={this.refreshState} />
           </FormGroup>
+          
+          <FormGroup>
+            <FormLabel>Adres</FormLabel>
+            <FormInput id="adresInput" onChange={this.refreshState} />
+          </FormGroup>
+         
+
           <FormGroup>
             <FormLabel>Data urodzenia</FormLabel>
             <FormInput
@@ -205,4 +221,4 @@ const FormErrorMessage = styled.div`
 `;
 
 const REGISTER_URL = "register";
-export default Register;
+export default withRouter(Register);
