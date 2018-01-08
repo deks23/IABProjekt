@@ -56,10 +56,10 @@ export class UserPane extends Component {
       return (
         <Container>
           <div>
-            Dawca:
+            Dawca:      
             <div>
-              <Table className="table">
-                <thead>
+              <Table className="table table-striped">
+                <thead className="bg-danger">
                   <tr>
                     <th>Imię  </th>
                     <th>Nazwisko</th>
@@ -94,8 +94,8 @@ export class UserPane extends Component {
 
   renderUserDonations = () => {
     return (
-    <table className="table">
-    <thead>
+    <table className="table table-striped">
+    <thead className="bg-danger">
       <tr>
         <th>Data donacji</th>
         <th>Informacje o donacji</th>

@@ -134,7 +134,7 @@ class Register extends React.Component {
             />
           </FormGroup>
           <FormGroup className="form-group">
-            <FormButton type="submit" onClick={this.onSubmit}>
+            <FormButton type="submit" onClick={this.onSubmit} className="btn btn-primary">
               Submit
             </FormButton>
           </FormGroup>

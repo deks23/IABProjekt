@@ -33,31 +33,84 @@ export class Donations extends Component {
     if (this.state.donations.length === 0) {
       return <div>Brak donacji</div>;
     } else {
-      return <div>meh</div>;
+      return (
+        <DonationsList>
+          <table className="table table-striped">
+            <thead className="bg-danger">
+              <tr>
+                <th>Id donacji</th>
+                <th>Data</th>
+                <th>Uwagi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.donations.map(p => (
+                <tr>
+                  <td>{p.IdDonacji}</td>
+                  <td>{p.Data}</td>
+                  <td>{p.Uwagi}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </DonationsList>
+      );
     }
   };
 
   renderPatientData = () => {
     return (
-      <div>
-        <ul className="list-group">
-          <li className="list-group-item">
-            {this.props.name ? this.props.name : "brak danych"}{" "}
-          </li>
-          <li className="list-group-item">
-            {this.props.surname ? this.props.surname : "brak danych"}
-          </li>
-          <li className="list-group-item">
-            {this.props.birthDate ? this.props.birthDate : "brak danych"}
-          </li>
-          <li className="list-group-item">
-            {this.props.bloodGroup ? this.props.bloodGroup : "brak danych"}
-          </li>
-          <li className="list-group-item">
-            {this.props.adres ? this.props.adres : "brak danych"}
-          </li>
-        </ul>
-      </div>
+      <Div>
+      
+        <ListContainer>
+          <ul className="list-group">
+            <li className="list-group-item">Imię</li>
+            <li className="list-group-item">Nazwisko</li>
+            <li className="list-group-item">Data urodzenia</li>
+            <li className="list-group-item">Grupa krwi</li>
+            <li className="list-group-item">Adres</li>
+          </ul>
+
+          <ul className="list-group">
+            <li className="list-group-item">
+              {this.props.name ? this.props.name : "brak danych"}{" "}
+            </li>
+            <li className="list-group-item">
+              {this.props.surname ? this.props.surname : "brak danych"}
+            </li>
+            <li className="list-group-item">
+              {this.props.birthDate ? this.props.birthDate : "brak danych"}
+            </li>
+            <li className="list-group-item">
+              {this.props.bloodGroup ? this.props.bloodGroup : "brak danych"}
+            </li>
+            <li className="list-group-item">
+              {this.props.adres ? this.props.adres : "brak danych"}
+            </li>
+          </ul>
+        </ListContainer>
+       
+        <Button
+          onClick={this.props.closeDonations}
+          className="btn btn-primary"
+        >
+          Powrót do listy pacjentów
+        </Button>
+
+        <Button
+          
+          className="btn btn-primary"
+        >
+          Zmień dane pacjenta
+        </Button>
+
+        <Button
+          
+          className="btn btn-primary"
+        >
+          Dodaj donację
+        </Button>
+      </Div>
     );
   };
   createUserObject = () => {
@@ -66,14 +119,11 @@ export class Donations extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.closeDonations}>
-          Powrót do listy dawców
-        </button>
         <UserDataContainer>
           {this.renderPatientData()}
-          <div>
+          
             {this.state.loading ? this.renderLoader() : this.renderDonations()}
-          </div>
+          
         </UserDataContainer>
       </div>
     );
@@ -84,5 +134,30 @@ const UserDataContainer = styled.div`
   align-items: center;
   justify-content: space-around;
 `;
+const ListContainer = styled.div`
+  display: flex;
+`;
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const DonationsList = styled.div`
+  align-self: flex-start;
+`;
+const Button = styled.button`
+  flex: 1;
+  border: none;
+  background-color: #35bbff;
+  padding: 5px;
+  margin:5px;
+  font-size: 130%;
+  font-weight: bold;
+  box-shadow: 1px 1px 2px grey;
+
+  &:active {
+    box-shadow: 0px 0px 0px;
+  }
+`;
+
 const DONATIONS = "donations";
 export default Donations;

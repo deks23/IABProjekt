@@ -104,7 +104,7 @@ export class Login extends Component {
             />
           </FormGroup>
           <FormGroup className="form-group">
-            <FormButton type="submit" onClick={this.onPatientSubmit} className>
+            <FormButton type="submit" onClick={this.onPatientSubmit} className="btn btn-primary">
               Submit
             </FormButton>
           </FormGroup>
@@ -128,7 +128,7 @@ export class Login extends Component {
             />
           </FormGroup>
           <FormGroup className="form-group">
-            <FormButton type="submit" onClick={this.onEmployeeSubmit} className>
+            <FormButton type="submit" onClick={this.onEmployeeSubmit} className="btn btn-primary">
               Submit
             </FormButton>
           </FormGroup>
