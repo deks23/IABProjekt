@@ -13,7 +13,7 @@ export class AddDonation extends React.Component {
   }
 
   editUser = () => {
-      console.log(this.createUserObject());
+    console.log(this.createUserObject());
     ApiClient.post(EDIT_USER_URL, this.createDonationObject())
       .then(response => {
         console.log(response);
@@ -23,8 +23,6 @@ export class AddDonation extends React.Component {
         console.log(error);
       });
   };
-
-
 
   refreshState = e => {
     e.preventDefault();
@@ -40,7 +38,7 @@ export class AddDonation extends React.Component {
           info: e.target.value
         });
         break;
-      
+
       default:
         break;
     }
@@ -50,7 +48,7 @@ export class AddDonation extends React.Component {
     return {
       id: this.props.id,
       info: this.state.info,
-      date: this.state.date,
+      date: this.state.date
     };
   };
 
@@ -75,22 +73,16 @@ export class AddDonation extends React.Component {
               className="form-control"
               id="donationInput"
               onChange={this.refreshState}
-              
             />
           </FormGroup>
-         
-          
-         
           <FormGroup className="form-group row">
             <FormLabel>Data donacji</FormLabel>
             <FormInput
               id="dateInput"
               type="date"
               onChange={this.refreshState}
-              
             />
           </FormGroup>
-          
           <FormGroup className="form-group row">
             <FormButton
               type="submit"
@@ -107,7 +99,6 @@ export class AddDonation extends React.Component {
               Powrót do panelu pacjenta
             </FormButton>
           </FormGroup>
-        
         </Form>
       </FormContainer>
     );
@@ -123,7 +114,6 @@ const FormContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-
   justify-content: space-around;
 `;
 
@@ -160,18 +150,19 @@ const FormLabel = styled.label`
 `;
 
 const FormButton = styled.button`
-  flex: 1;
-
-  border: none;
-  background-color: #35bbff;
-  padding: 5px;
-  font-size: 130%;
-  font-weight: bold;
-  box-shadow: 1px 1px 2px grey;
-
-  &:active {
-    box-shadow: 0px 0px 0px;
-  }
+    flex: 1;
+    border: none;
+    background-color: #35bbff;
+    padding: 5px;
+    margin: 5px;
+    font-size: 130%;
+    font-weight: bold;
+    min-height:5vh;
+    box-shadow: 1px 1px 2px grey;
+  
+    &:active {
+      box-shadow: 0px 0px 0px;
+    }
 `;
 
 const FormErrorMessage = styled.div`

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ApiClient from "../api-client/ApiClient";
 import Loader from "../user-interface/Loader";
 import UpdatePatientData from "./UpdatePatientData";
+import AddDonation from "./AddDonation";
 export class Donations extends Component {
   constructor(props) {
     super(props);
@@ -101,7 +102,7 @@ export class Donations extends Component {
           Zmień dane pacjenta
         </Button>
 
-        <Button className="btn btn-primary">Dodaj donację</Button>
+        <Button className="btn btn-primary" onClick={this.showAddDonation}>Dodaj donację</Button>
       </Div>
     );
   };
@@ -110,11 +111,11 @@ export class Donations extends Component {
   };
 
   showEditPanel = () => {
-    this.setState({ editPanel: true });
+    this.setState({ editPanel: true,  other: true });
   };
 
   showAddDonation = () => {
-    this.setState({ addDonation: true });
+    this.setState({ addDonation: true, other: true, });
   };
 
   renderUser = () => {
@@ -126,11 +127,11 @@ export class Donations extends Component {
     );
   };
   closeEditPanel = () =>{
-    this.setState({editPanel:false});
+    this.setState({editPanel:false,  other: false});
   }
 
   closeAddDonation = () =>{
-    this.setState({addDonation:false});
+    this.setState({addDonation:false,  other: false});
   }
 
   renderEditPanel = () => {
@@ -146,13 +147,19 @@ export class Donations extends Component {
       />
     );
   };
-
- 
+renderDonationAdd = () =>{
+    return (<AddDonation closeAddDonation = {this.closeAddDonation} id = {this.props.patientId} />);
+}
+ renderOther = () =>{
+     if (this.state.editPanel) return this.renderEditPanel();
+     else return this.renderDonationAdd();
+ }
 
   render() {
+      console.log(this.state);
     return (
       <div>
-        {this.state.editPanel ? this.renderEditPanel() : this.renderUser()}
+        {this.state.other ? this.renderOther() : this.renderUser()}
       </div>
     );
   }

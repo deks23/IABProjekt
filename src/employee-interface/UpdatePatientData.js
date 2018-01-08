@@ -168,6 +168,7 @@ export class UpdatePatientData extends React.Component {
     );
   };
   render() {
+      console.log("add");
     return (
       <div>{this.state.loading ? this.renderLoader() : this.renderForm()}</div>
     );
