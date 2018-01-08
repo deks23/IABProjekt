@@ -18,7 +18,7 @@ export class Home extends Component {
   render() {
     return (
       <Container>
-      qwe
+      Strona główna
       </Container>
       
     );
