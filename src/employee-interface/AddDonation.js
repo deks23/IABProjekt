@@ -12,12 +12,12 @@ export class AddDonation extends React.Component {
     };
   }
 
-  editUser = () => {
-    console.log(this.createUserObject());
-    ApiClient.post(EDIT_USER_URL, this.createDonationObject())
+  addDonation = () => {
+   
+    ApiClient.post(ADD_DONATION, this.createDonationObject())
       .then(response => {
-        console.log(response);
-        this.props.closeEditPanel();
+        this.props.closeAddDonation();
+
       })
       .then(error => {
         console.log(error);
@@ -38,7 +38,6 @@ export class AddDonation extends React.Component {
           info: e.target.value
         });
         break;
-
       default:
         break;
     }
@@ -54,8 +53,7 @@ export class AddDonation extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.setState({ loading: true });
-    this.editUser();
+    this.addDonation();
   };
 
   renderLoader = () => {
@@ -71,7 +69,7 @@ export class AddDonation extends React.Component {
             <FormLabel>Uwagi</FormLabel>
             <FormInput
               className="form-control"
-              id="donationInput"
+              id="infoInput"
               onChange={this.refreshState}
             />
           </FormGroup>
@@ -170,5 +168,5 @@ const FormErrorMessage = styled.div`
   padding: 5px;
 `;
 
-const EDIT_USER_URL = "addDontaion";
+const ADD_DONATION = "addDonation";
 export default AddDonation;

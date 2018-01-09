@@ -66,7 +66,7 @@ export class PatientList extends Component {
           </thead>
           <tbody>
             {this.state.list.map(p => (
-              <Patient patient={p} showDonations={this.showDonations} />
+              <Patient patient={p} showDonations={this.showDonations} show />
             ))}
           </tbody>
         </table>

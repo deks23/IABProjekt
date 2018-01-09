@@ -12,6 +12,7 @@ export const loginAction = (user, history) => {
       password: user.password
     })
       .then(response => {
+        
         dispatch({
           type: LOGIN_SUCCESS_ACTION,
           data: {

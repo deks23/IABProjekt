@@ -57,7 +57,7 @@ export class UpdatePatientData extends React.Component {
         break;
       case "adresInput":
         this.setState({
-          adress: e.target.value
+          adres: e.target.value
         });
         break;
       case "dateInput":

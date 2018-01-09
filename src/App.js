@@ -40,6 +40,7 @@ class App extends Component {
 const RootDiv = styled.div`
  background-color: #B2E3FF;
  width:100vw;
+ font-family: Lato;
  
 
 `;

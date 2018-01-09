@@ -59,9 +59,7 @@ export class Header extends Component {
             <HeaderList>
               <Link to="/"> Strona domowa</Link>
             </HeaderList>
-            <HeaderList>
-              <Link to="/page">page</Link>
-            </HeaderList>
+            
             <HeaderList>{this.renderUserPanelLink()}</HeaderList>
             <HeaderList>{this.renderEmployeePanelLink()} </HeaderList>
             <HeaderList>{this.renderAddUserLink()}</HeaderList>
